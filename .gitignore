@@ -1,0 +1,4 @@
+nvim/lazy-lock.json
+**/cache/
+**/*.log
+yay/completion.cache

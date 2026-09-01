@@ -1,0 +1,93 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[╭─](fg:#6b4f3a)\
+$os\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$rust\
+$fill\
+$battery\
+$time\
+[─╮](fg:#6b4f3a)
+[╰─](fg:#6b4f3a)$character"""
+
+[fill]
+symbol = ' '
+
+[os]
+disabled = false
+style = "fg:#6b4f3a"
+
+[os.symbols]
+Linux = "λ "
+
+[directory]
+style = "bold fg:#6b4f3a"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+
+[git_branch]
+symbol = " "
+style = "fg:#8da101"
+format = '[[ $symbol$branch](fg:#8da101)]($style)'
+
+[git_status]
+style = "fg:#f85552"
+format = '[[($all_status$ahead_behind)](fg:#f85552)]($style)'
+
+[python]
+symbol = " "
+style = "fg:#dfa000"
+format = '[[ $symbol$version](fg:#dfa000)]($style)'
+
+[nodejs]
+symbol = " "
+style = "fg:#8da101"
+format = '[[ $symbol$version](fg:#8da101)]($style)'
+
+[rust]
+symbol = " "
+style = "fg:#f85552"
+format = '[[ $symbol$version](fg:#f85552)]($style)'
+
+[battery]
+full_symbol = "󰁹 "
+charging_symbol = "󰂄 "
+discharging_symbol = "󰂃 "
+unknown_symbol = "󰁽 "
+empty_symbol = "󰂎 "
+format = '[$symbol$percentage]($style) '
+
+[[battery.display]]
+threshold = 20
+style = "bold fg:#f85552"
+
+[[battery.display]]
+threshold = 50
+style = "fg:#dfa000"
+
+[[battery.display]]
+threshold = 100
+style = "fg:#8da101"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "fg:#a6b0a0"
+format = '[ $time]($style) '
+
+[character]
+success_symbol = '[❯](bold fg:#8da101)'
+error_symbol = '[❯](bold fg:#f85552)'
