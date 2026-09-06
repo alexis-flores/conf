@@ -10,10 +10,11 @@
   "controlCenterShowMicPercent": true,
   "showWorkspaceIndex": true,
   "appIdSubstitutions": [],
+  "iconThemeDark": "Papirus",
   "cursorSettings": {
     "hyprland": {
       "inactiveTimeout": 0,
-      "hideOnKeyPress": true,
+      "hideOnKeyPress": false,
       "hideOnTouch": false
     },
     "theme": "skyrim-journal",

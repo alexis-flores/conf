@@ -35,12 +35,8 @@ end)
 ---- ENVIRONMENT VARIABLES ----
 -------------------------------
 
-hl.env("XCURSOR_SIZE", "24")
-hl.env("HYPRCURSOR_SIZE", "24")
--- Set directly: DMS 1.4.x writes dms/cursor.conf (hyprlang), which a Lua
--- config can't source. Drop these once DMS 1.5+ generates dms/cursor.lua.
-hl.env("XCURSOR_THEME", "skyrim-journal")
-hl.env("HYPRCURSOR_THEME", "skyrim-journal")
+-- Cursor theme/size env comes from the DMS-managed dms/cursor.lua,
+-- required at the bottom of this file.
 
 -----------------------
 ---- LOOK AND FEEL ----
@@ -289,7 +285,7 @@ hl.window_rule({
 
 -- DMS regenerates these as Lua modules in hypr/dms/ once it sees a Lua
 -- config. pcall keeps startup clean if a module doesn't exist yet.
-pcall(require, "dms.cursor")
+require("dms.cursor")
 pcall(require, "dms.outputs")
 
 -- Uncomment to let DMS/matugen theme borders and gaps instead of the
