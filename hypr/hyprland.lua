@@ -26,9 +26,9 @@ local fileManager = "nautilus"
 -------------------
 
 hl.on("hyprland.start", function()
-    -- NixOS ships hyprpolkitagent as a systemd user unit
+    -- NixOS ships hyprpolkitagent as a systemd user unit.
+    -- DMS starts via its own systemd user unit (dms.service).
     hl.exec_cmd("systemctl --user start hyprpolkitagent.service")
-    hl.exec_cmd("dms run")
 end)
 
 -------------------------------
