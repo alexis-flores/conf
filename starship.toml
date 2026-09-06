@@ -1,7 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[╭─](fg:#6b4f3a)\
+[╭─](fg:#d79921)\
 $os\
 $directory\
 $git_branch\
@@ -12,21 +12,21 @@ $rust\
 $fill\
 $battery\
 $time\
-[─╮](fg:#6b4f3a)
-[╰─](fg:#6b4f3a)$character"""
+[─╮](fg:#d79921)
+[╰─](fg:#d79921)$character"""
 
 [fill]
 symbol = ' '
 
 [os]
 disabled = false
-style = "fg:#6b4f3a"
+style = "fg:#d79921"
 
 [os.symbols]
 Linux = "λ "
 
 [directory]
-style = "bold fg:#6b4f3a"
+style = "bold fg:#d79921"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncate_to_repo = true
@@ -40,27 +40,27 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = " "
-style = "fg:#8da101"
-format = '[[ $symbol$branch](fg:#8da101)]($style)'
+style = "fg:#b8bb26"
+format = '[[ $symbol$branch](fg:#b8bb26)]($style)'
 
 [git_status]
-style = "fg:#f85552"
-format = '[[($all_status$ahead_behind)](fg:#f85552)]($style)'
+style = "fg:#fb4934"
+format = '[[($all_status$ahead_behind)](fg:#fb4934)]($style)'
 
 [python]
 symbol = " "
-style = "fg:#dfa000"
-format = '[[ $symbol$version](fg:#dfa000)]($style)'
+style = "fg:#fabd2f"
+format = '[[ $symbol$version](fg:#fabd2f)]($style)'
 
 [nodejs]
 symbol = " "
-style = "fg:#8da101"
-format = '[[ $symbol$version](fg:#8da101)]($style)'
+style = "fg:#b8bb26"
+format = '[[ $symbol$version](fg:#b8bb26)]($style)'
 
 [rust]
 symbol = " "
-style = "fg:#f85552"
-format = '[[ $symbol$version](fg:#f85552)]($style)'
+style = "fg:#fb4934"
+format = '[[ $symbol$version](fg:#fb4934)]($style)'
 
 [battery]
 full_symbol = "󰁹 "
@@ -72,22 +72,22 @@ format = '[$symbol$percentage]($style) '
 
 [[battery.display]]
 threshold = 20
-style = "bold fg:#f85552"
+style = "bold fg:#fb4934"
 
 [[battery.display]]
 threshold = 50
-style = "fg:#dfa000"
+style = "fg:#fabd2f"
 
 [[battery.display]]
 threshold = 100
-style = "fg:#8da101"
+style = "fg:#b8bb26"
 
 [time]
 disabled = false
 time_format = "%H:%M"
-style = "fg:#a6b0a0"
+style = "fg:#928374"
 format = '[ $time]($style) '
 
 [character]
-success_symbol = '[❯](bold fg:#8da101)'
-error_symbol = '[❯](bold fg:#f85552)'
+success_symbol = '[❯](bold fg:#b8bb26)'
+error_symbol = '[❯](bold fg:#fb4934)'

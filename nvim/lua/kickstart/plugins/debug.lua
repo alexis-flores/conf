@@ -10,8 +10,6 @@ vim.pack.add {
   'https://github.com/mfussenegger/nvim-dap',
   'https://github.com/rcarriga/nvim-dap-ui',
   'https://github.com/nvim-neotest/nvim-nio',
-  'https://github.com/mason-org/mason.nvim',
-  'https://github.com/jay-babu/mason-nvim-dap.nvim',
 }
 
 -- Basic debugging keymaps, feel free to change to your liking!
@@ -27,23 +25,26 @@ vim.keymap.set('n', '<F7>', function() require('dapui').toggle() end, { desc = '
 local dap = require 'dap'
 local dapui = require 'dapui'
 
-require('mason-nvim-dap').setup {
-  -- Makes a best effort to setup the various debuggers with
-  -- reasonable debug configurations
-  automatic_installation = true,
-
-  -- You can provide additional configuration to the handlers,
-  -- see mason-nvim-dap README for more information
-  handlers = {},
-
-  -- You'll need to check that you have the required things installed
-  -- online, please don't ask me how to install them :)
-  ensure_installed = {
-    -- Update this to ensure that you have the debuggers for the langs you want
-    'codelldb',  -- C, C++, Rust
-    'cpptools',  -- C, C++ embedded
-  },
-}
+-- NixOS: adapters come from nix (`vscode-extensions.vadimcn.vscode-lldb` for
+-- codelldb, or the `lldb` package for lldb-dap), not mason.
+if vim.fn.executable 'codelldb' == 1 then
+  dap.adapters.codelldb = {
+    type = 'executable',
+    command = 'codelldb',
+  }
+  for _, ft in ipairs { 'c', 'cpp', 'rust' } do
+    dap.configurations[ft] = {
+      {
+        name = 'Launch file',
+        type = 'codelldb',
+        request = 'launch',
+        program = function() return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file') end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+      },
+    }
+  end
+end
 
 -- Dap UI setup
 -- For more information, see |:help nvim-dap-ui|

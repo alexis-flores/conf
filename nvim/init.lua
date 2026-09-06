@@ -143,16 +143,7 @@ do
 
   if vim.g.have_nerd_font then vim.pack.add { gh 'nvim-tree/nvim-web-devicons' } end
 
-  vim.pack.add { gh 'lewis6991/gitsigns.nvim' }
-  require('gitsigns').setup {
-    signs = {
-      add = { text = '+' },
-      change = { text = '~' },
-      delete = { text = '_' },
-      topdelete = { text = '‾' },
-      changedelete = { text = '~' },
-    },
-  }
+  -- gitsigns is set up in kickstart/plugins/gitsigns.lua (signs + keymaps)
 
   vim.pack.add { gh 'folke/which-key.nvim' }
   require('which-key').setup {
@@ -166,13 +157,13 @@ do
     },
   }
 
-  -- Gruvbox light to match Everforest terminal theme
+  -- Gruvbox soft dark to match the ghostty terminal theme
   vim.pack.add { gh 'ellisonleao/gruvbox.nvim' }
   require('gruvbox').setup {
     contrast = 'soft',
     italic = { strings = false, comments = false },
   }
-  vim.o.background = 'light'
+  vim.o.background = 'dark'
   vim.cmd.colorscheme 'gruvbox'
 
   vim.pack.add { gh 'folke/todo-comments.nvim' }
@@ -333,8 +324,7 @@ do
     -- CMake
     neocmakelsp = {},
 
-    -- Lua tooling
-    stylua = {},
+    -- Lua tooling (stylua is a formatter, handled by conform below)
     lua_ls = {
       on_init = function(client)
         client.server_capabilities.documentFormattingProvider = false
@@ -367,29 +357,11 @@ do
     },
   }
 
-  vim.pack.add {
-    gh 'neovim/nvim-lspconfig',
-    gh 'mason-org/mason.nvim',
-    gh 'mason-org/mason-lspconfig.nvim',
-    gh 'WhoIsSethDaniel/mason-tool-installer.nvim',
-  }
-
-  require('mason').setup {}
-
-  local ensure_installed = vim.tbl_keys(servers or {})
-  vim.list_extend(ensure_installed, {
-    -- Python formatters/linters
-    'black',
-    'isort',
-    'ruff',
-    'mypy',
-    -- C/C++ debugger
-    'cpptools',
-    -- Rust/C debugger (better for Rust)
-    'codelldb',
-  })
-
-  require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+  -- NixOS: no mason — its downloaded binaries can't run without nix-ld.
+  -- Servers/formatters come from nix instead (system packages or dev shells):
+  --   clang-tools rust-analyzer pyright neocmakelsp lua-language-server stylua
+  --   black isort ruff mypy
+  vim.pack.add { gh 'neovim/nvim-lspconfig' }
 
   for name, server in pairs(servers) do
     vim.lsp.config(name, server)
@@ -467,11 +439,17 @@ end
 do
   vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
 
+  -- Parsers install to stdpath('data')/site, which must be on the
+  -- runtimepath for them to load (normally done by setup(), which this
+  -- config doesn't call).
+  vim.opt.runtimepath:append(vim.fn.stdpath 'data' .. '/site')
+
   local parsers = {
     'bash', 'c', 'cpp', 'rust', 'python',
     'lua', 'luadoc', 'vim', 'vimdoc',
     'diff', 'html', 'markdown', 'markdown_inline', 'query',
     'cmake', 'toml',
+    'regex', -- noice.nvim wants this
   }
   require('nvim-treesitter').install(parsers)
 
@@ -512,7 +490,6 @@ end
 do
   require 'kickstart.plugins.debug'
   require 'kickstart.plugins.indent_line'
-  require 'kickstart.plugins.lint'
   require 'kickstart.plugins.autopairs'
   require 'kickstart.plugins.neo-tree'
   require 'kickstart.plugins.gitsigns'

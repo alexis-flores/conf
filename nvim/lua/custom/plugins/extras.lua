@@ -13,7 +13,14 @@ require('trouble').setup {}
 vim.pack.add { 'https://github.com/folke/noice.nvim' }
 vim.pack.add { 'https://github.com/MunifTanjim/nui.nvim' }
 vim.pack.add { 'https://github.com/rcarriga/nvim-notify' }
-require('noice').setup {}
+require('noice').setup {
+  lsp = {
+    override = {
+      ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+      ['vim.lsp.util.stylize_markdown'] = true,
+    },
+  },
+}
 
 -- Bufferline
 vim.pack.add { 'https://github.com/akinsho/bufferline.nvim' }
@@ -28,13 +35,5 @@ vim.keymap.set({ 'n', 'x', 'o' }, 's', function() require('flash').jump() end, {
 vim.pack.add { 'https://github.com/nvim-pack/nvim-spectre' }
 require('spectre').setup {}
 
--- Smooth scrolling
-vim.pack.add { 'https://github.com/karb94/neoscroll.nvim' }
-require('neoscroll').setup {}
-
--- Smear cursor
-vim.pack.add { 'https://github.com/sphamba/smear-cursor.nvim' }
-require('smear_cursor').setup {}
-
--- Mini animate
+-- Mini animate (scroll + cursor animations; replaces neoscroll/smear-cursor)
 require('mini.animate').setup {}
