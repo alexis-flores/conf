@@ -1,7 +1,3 @@
--- Harpoon
-vim.pack.add { 'https://github.com/ThePrimeagen/harpoon' }
-require('harpoon').setup {}
-
 -- Fugitive
 vim.pack.add { 'https://github.com/tpope/vim-fugitive' }
 
