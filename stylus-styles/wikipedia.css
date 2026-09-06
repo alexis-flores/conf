@@ -1,0 +1,43 @@
+body.theme-sepia {
+	--page-bg: #cdb27b;
+	--box-bg: #bda06a;
+	--box-bg-dark: #b39a63;
+	--box-bg-darker: #b39a63;
+	--box-bg-light: #c0a76e;
+	--text-color: #332812;
+	--text-color-light: #6e5c38;
+	--text-color-lighter: #6e5c38;
+	--sep-color: #b39a63;
+	--scrollbar-color: var(--box-bg-dark);
+	--scrollbar-color-contents: var(--scrollbar-color);
+	--switcher-bg: var(--box-bg-light);
+	--slider-bg: #b39a63;
+	--slider-thumb-color: #cdb27b;
+	--bullet-color: var(--text-color-lighter);
+	--background-color-interactive-subtle: #c0a76e;
+	--border-color-subtle: transparent;
+	--font-sans: iMWritingQuat Nerd Font Propo;
+	--font-serif: iMWritingQuat Nerd Font Propo
+}
+:root {
+	--theme-colors: 122, 82, 48;
+}
+
+.bandeau-niveau-ebauche, .bandeau-niveau-information {
+	border-color: #7a5230;
+	background: #bda06a
+}
+
+
+.theme-article .mw-body h1, .theme-article .mw-body-content h1 {
+	font-size: 35px !important;
+}
+
+.theme-article .mw-body-content h2 {
+	font-size: 25px !important
+}
+
+.vector-body .mw-heading3, .vector-body h3, .vector-body .mw-heading4, .vector-body h4 {
+  font-weight: 500;
+  font-family: Recursive Casual;
+}

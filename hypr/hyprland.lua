@@ -37,15 +37,19 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+-- Set directly: DMS 1.4.x writes dms/cursor.conf (hyprlang), which a Lua
+-- config can't source. Drop these once DMS 1.5+ generates dms/cursor.lua.
+hl.env("XCURSOR_THEME", "skyrim-journal")
+hl.env("HYPRCURSOR_THEME", "skyrim-journal")
 
 -----------------------
 ---- LOOK AND FEEL ----
 -----------------------
 
--- Static palette (gruvbox dark); require("dms.colors") at the bottom of
+-- Static palette (paper / e-ink); require("dms.colors") at the bottom of
 -- this file instead if you want DMS/matugen to drive the border colors.
-local yellow = "rgba(d79921ff)"
-local gray   = "rgba(928374ff)"
+local accent = "rgba(6e5834ff)"
+local tan    = "rgba(b0975fff)"
 
 hl.config({
     general = {
@@ -55,8 +59,8 @@ hl.config({
         border_size = 3,
 
         col = {
-            active_border   = yellow,
-            inactive_border = gray,
+            active_border   = accent,
+            inactive_border = tan,
         },
 
         resize_on_border = true,
@@ -74,7 +78,7 @@ hl.config({
         shadow = {
             enabled = true,
             range   = 20,
-            color   = "rgba(00000099)",
+            color   = "rgba(4f3e2266)",
         },
 
         blur = {
@@ -94,12 +98,13 @@ hl.config({
 
     misc = {
         disable_hyprland_logo = true,
+        background_color = "rgb(cdb27b)", -- coffee-stained paper bg while DMS/wallpaper loads
     },
 
     group = {
         col = {
-            border_active   = yellow,
-            border_inactive = gray,
+            border_active   = accent,
+            border_inactive = tan,
         },
 
         groupbar = {
@@ -108,15 +113,15 @@ hl.config({
             gaps_out      = 0,
             font_size     = 11,
             font_family   = "iMWritingQuat Nerd Font Propo",
-            text_color    = "rgb(282828)",
-            text_color_inactive = "rgb(ebdbb2)",
+            text_color    = "rgb(cdb27b)",
+            text_color_inactive = "rgb(332812)",
             keep_upper_gap = false,
             blur          = true,
             rounding      = 0,
 
             col = {
-                active   = yellow,
-                inactive = gray,
+                active   = accent,
+                inactive = tan,
             },
         },
     },

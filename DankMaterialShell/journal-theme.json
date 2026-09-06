@@ -1,0 +1,22 @@
+{
+  "name": "Traveler's Journal",
+  "primary": "#7a5230",
+  "primaryText": "#ecd9ac",
+  "primaryContainer": "#6e5834",
+  "secondary": "#66702f",
+  "surface": "#cdb27b",
+  "surfaceText": "#332812",
+  "surfaceVariant": "#bda06a",
+  "surfaceVariantText": "#332812",
+  "surfaceTint": "#7a5230",
+  "background": "#c2a670",
+  "backgroundText": "#332812",
+  "outline": "#6e5834",
+  "surfaceContainer": "#c0a76e",
+  "surfaceContainerHigh": "#bda06a",
+  "surfaceContainerHighest": "#b39a63",
+  "error": "#a94a38",
+  "warning": "#8a6a14",
+  "info": "#7a5230",
+  "matugen_type": "scheme-tonal-spot"
+}

@@ -157,19 +157,35 @@ do
     },
   }
 
-  -- Gruvbox soft dark to match the ghostty terminal theme
-  vim.pack.add { gh 'ellisonleao/gruvbox.nvim' }
-  require('gruvbox').setup {
-    contrast = 'soft',
-    italic = { strings = false, comments = false },
-  }
-  vim.o.background = 'dark'
-  vim.cmd.colorscheme 'gruvbox'
+  -- Colorscheme: traveler's journal via mini.base16, set up below after
+  -- mini.nvim is added (coffee paper, walnut ink, leather accents).
+  vim.o.background = 'light'
 
   vim.pack.add { gh 'folke/todo-comments.nvim' }
   require('todo-comments').setup { signs = false }
 
   vim.pack.add { gh 'nvim-mini/mini.nvim' }
+
+  require('mini.base16').setup {
+    palette = {
+      base00 = '#cdb27b', -- page
+      base01 = '#c0a76e', -- lighter stain (statusline bg)
+      base02 = '#b39a63', -- selection
+      base03 = '#8f7c52', -- comments / faded ink
+      base04 = '#6e5c38', -- statusline fg
+      base05 = '#332812', -- walnut ink
+      base06 = '#2b2110',
+      base07 = '#20180c',
+      base08 = '#a94a38', -- oxblood: variables / errors
+      base09 = '#96683f', -- saddle: numbers / constants
+      base0A = '#8a6a14', -- amber: types / search
+      base0B = '#66702f', -- olive: strings
+      base0C = '#4a7660', -- verdigris: builtins / regex
+      base0D = '#7a5230', -- chestnut: functions
+      base0E = '#8c5a79', -- plum: keywords
+      base0F = '#6e5834', -- leather: punctuation extra
+    },
+  }
 
   require('mini.ai').setup {
     mappings = {

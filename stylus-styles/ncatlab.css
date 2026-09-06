@@ -1,0 +1,23 @@
+body {
+  background-color: #cdb27b;
+  color: #332812;
+}
+h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+  color: #7a5230;
+}
+
+.maruku_toc li a {
+  color: #7a5230;
+}
+div.rightHandSide {
+  border: 1px solid #332812;
+}
+.navigation a {
+  color: #332812 !important;
+  text-decoration: none;
+}
+input[type="text"]#searchField {
+  background: #cdb27b;
+  border-color: #332812;
+  color: #332812;
+}

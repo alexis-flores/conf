@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./dms-package.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -108,7 +109,9 @@
      glib
      papirus-icon-theme
      adwaita-icon-theme
+     bibata-cursors
   ];
+  environment.variables.EDITOR = "nvim";
   environment.sessionVariables = {
   	LIBVA_DRIVER_NAME = "iHD";
   };
@@ -117,6 +120,10 @@
   	".." = "cd ..";
 	"..." = "cd ../..";
   };
+  
+  programs.bash.interactiveShellInit = ''
+  	open() { (nautilus "''${1:-.}" >/dev/null 2>&1 &) }
+  '';
 
   programs.hyprland = {
   	enable = true;
@@ -124,6 +131,8 @@
   };
 
   programs.dms-shell.enable = true;
+
+  programs.starship.enable = true;
 
   services.pipewire = {
   	enable = true;
@@ -147,8 +156,9 @@
   	enable = true;
 	settings = {
 		default_session = {
-		command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd ${pkgs.writeShellScript 		      	      "hyprland-quiet" ''
-        	  	exec uwsm start -e -D Hyprland hyprland.desktop >/dev/null 2>&1''}";
+			command = "${pkgs.tuigreet}/bin/tuigreet --time --greeting '✵✧✧✧✧✧✧ nightingale ✧✧✧✧✧✧✵' --theme 'container=black;text=white;border=blue;title=blue;greet=yellow;prompt=red;input=white;action=cyan;button=yellow;time=white' --cmd ${pkgs.writeShellScript "hyprland-quiet" ''
+  exec uwsm start -e -D Hyprland hyprland.desktop >/dev/null 2>&1
+			''}";
 			user = "alex";
 		};
 	};
@@ -202,6 +212,25 @@
     		ExecStop = "${pkgs.systemd}/bin/systemd-analyze log-level crit";
     	};
   };
+
+  console.colors = [
+    "cdb27b"
+    "a94a38"
+    "66702f"
+    "8a6a14"
+    "7a5230"
+    "8c5a79"
+    "4a7660"
+    "332812"
+    "8f7c52"
+    "c25a42"
+    "7d8a3a"
+    "a5811c"
+    "96683f"
+    "a06b8d"
+    "5c8a72"
+    "20180c"
+  ];
   
 
   # programs.mtr.enable = true;

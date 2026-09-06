@@ -1,3 +1,5 @@
+/* BEGIN DMS OVERRIDE */
+
 /*
 * GTK Colors
 * Generated with Matugen
@@ -6,36 +8,36 @@
 /* via thairanaru on GitHub: */
 
 /* Destructive colors are basically error colors */
-@define-color destructive_bg_color #ffb4ab;
-@define-color destructive_fg_color #690005;
+@define-color destructive_bg_color #a94a38;
+@define-color destructive_fg_color #ffffff;
 /* Follow material spec */
-@define-color error_bg_color #ffb4ab;
-@define-color error_fg_color #690005;
+@define-color error_bg_color #a94a38;
+@define-color error_fg_color #ffffff;
 /* Follow material spec (also I think looks nicer) */
-@define-color accent_fg_color #3d2f00;
-@define-color accent_bg_color #e3c46d;
+@define-color accent_fg_color #ecd9ac;
+@define-color accent_bg_color #7a5230;
 /* Use surface instead of background */
-@define-color window_bg_color #16130b;
-@define-color window_fg_color #eae1d4;
+@define-color window_bg_color #cdb27b;
+@define-color window_fg_color #332812;
 /* Make it more similar to Adwaita */
-@define-color view_bg_color #16130b;
-@define-color view_fg_color #eae1d4;
-@define-color headerbar_bg_color #16130b;
-@define-color headerbar_fg_color #eae1d4;
-@define-color sidebar_bg_color #231f17;
-@define-color sidebar_fg_color #eae1d4;
+@define-color view_bg_color #cdb27b;
+@define-color view_fg_color #332812;
+@define-color headerbar_bg_color #cdb27b;
+@define-color headerbar_fg_color #332812;
+@define-color sidebar_bg_color #c0a76e;
+@define-color sidebar_fg_color #332812;
 /* There is only like one application I know that uses this, and there isn't a good way to get
 a color between surface and surface container so I think just giving this surface is a good enough fallback*/
-@define-color secondary_sidebar_bg_color #16130b;
-@define-color secondary_sidebar_fg_color #eae1d4;
-@define-color card_bg_color #231f17;
-@define-color card_fg_color #eae1d4;
-@define-color overview_bg_color #231f17;
-@define-color overview_fg_color #eae1d4;
-@define-color popover_bg_color #231f17;
-@define-color popover_fg_color #eae1d4;
-@define-color dialog_bg_color #16130b;
-@define-color dialog_fg_color #eae1d4;
+@define-color secondary_sidebar_bg_color #cdb27b;
+@define-color secondary_sidebar_fg_color #332812;
+@define-color card_bg_color #c0a76e;
+@define-color card_fg_color #332812;
+@define-color overview_bg_color #c0a76e;
+@define-color overview_fg_color #332812;
+@define-color popover_bg_color #c0a76e;
+@define-color popover_fg_color #332812;
+@define-color dialog_bg_color #cdb27b;
+@define-color dialog_fg_color #332812;
 
 /* Backdrop/unfocused states - prevents white flash on window unfocus */
 @define-color headerbar_backdrop_color @window_bg_color;
@@ -46,3 +48,5 @@ a color between surface and surface container so I think just giving this surfac
 @define-color theme_unfocused_base_color @window_bg_color;
 @define-color theme_unfocused_selected_bg_color @accent_bg_color;
 @define-color theme_unfocused_selected_fg_color @accent_fg_color;
+
+/* END DMS OVERRIDE */

@@ -1,38 +1,39 @@
-background = #32302f
-foreground = #ebdbb2
-cursor-color = #ebdbb2
-selection-foreground = #ebdbb2
-selection-background = #504945
+# Traveler's journal - coffee-stained paper, walnut ink, worn leather tones
+background = #cdb27b
+foreground = #332812
+cursor-color = #4f3e22
+selection-foreground = #332812
+selection-background = #b39a63
 font-family = Iosevka Nerd Font
 
-# black
-palette = 0=#3c3836
-palette = 8=#928374
+# black (deep stain blotch / faded scrawl)
+palette = 0=#bda06a
+palette = 8=#6e5c38
 
-# red
-palette = 1=#cc241d
-palette = 9=#fb4934
+# red (oxblood)
+palette = 1=#a94a38
+palette = 9=#c25a42
 
-# green
-palette = 2=#98971a
-palette = 10=#b8bb26
+# green (olive)
+palette = 2=#66702f
+palette = 10=#7d8a3a
 
-# yellow
-palette = 3=#d79921
-palette = 11=#fabd2f
+# yellow (dark amber)
+palette = 3=#8a6a14
+palette = 11=#a5811c
 
-# blue
-palette = 4=#458588
-palette = 12=#83a598
+# blue slot -> chestnut leather (no blue in the satchel)
+palette = 4=#7a5230
+palette = 12=#96683f
 
-# magenta
-palette = 5=#b16286
-palette = 13=#d3869b
+# magenta (plum)
+palette = 5=#8c5a79
+palette = 13=#a06b8d
 
-# cyan
-palette = 6=#689d6a
-palette = 14=#8ec07c
+# cyan (dusty teal)
+palette = 6=#4a7660
+palette = 14=#5c8a72
 
-# white
-palette = 7=#a89984
-palette = 15=#ebdbb2
+# white (faded ink / full ink)
+palette = 7=#8f7c52
+palette = 15=#332812

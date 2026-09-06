@@ -1,33 +1,39 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# Traveler's journal prompt - the og [alex@nightingale:~]$ line in journal ink,
+# with quiet git/lang additions.
+
+add_newline = false
+
 format = """
-[╭─](fg:#d79921)\
-$os\
+[✧ ](fg:#332812)\
+[\\[](fg:#332812)\
+$username\
+[@](fg:#332812)\
+$hostname\
+[:](fg:#332812)\
 $directory\
+[\\]](fg:#332812)\
 $git_branch\
 $git_status\
 $python\
-$nodejs\
 $rust\
-$fill\
-$battery\
-$time\
-[─╮](fg:#d79921)
-[╰─](fg:#d79921)$character"""
+$character"""
 
-[fill]
-symbol = ' '
+[username]
+show_always = true
+style_user = "fg:#332812"
+style_root = "bold fg:#a94a38"
+format = "[$user]($style)"
 
-[os]
-disabled = false
-style = "fg:#d79921"
-
-[os.symbols]
-Linux = "λ "
+[hostname]
+ssh_only = false
+style = "fg:#332812"
+format = "[$hostname]($style)"
 
 [directory]
-style = "bold fg:#d79921"
-format = "[ $path ]($style)"
+style = "fg:#6e5834"
+format = "[$path]($style)"
 truncation_length = 3
 truncate_to_repo = true
 truncation_symbol = "…/"
@@ -40,54 +46,23 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = " "
-style = "fg:#b8bb26"
-format = '[[ $symbol$branch](fg:#b8bb26)]($style)'
+style = "fg:#66702f"
+format = ' [$symbol$branch]($style)'
 
 [git_status]
-style = "fg:#fb4934"
-format = '[[($all_status$ahead_behind)](fg:#fb4934)]($style)'
+style = "fg:#a94a38"
+format = '[($all_status$ahead_behind)]($style)'
 
 [python]
 symbol = " "
-style = "fg:#fabd2f"
-format = '[[ $symbol$version](fg:#fabd2f)]($style)'
-
-[nodejs]
-symbol = " "
-style = "fg:#b8bb26"
-format = '[[ $symbol$version](fg:#b8bb26)]($style)'
+style = "fg:#8a6a14"
+format = ' [$symbol$version]($style)'
 
 [rust]
 symbol = " "
-style = "fg:#fb4934"
-format = '[[ $symbol$version](fg:#fb4934)]($style)'
-
-[battery]
-full_symbol = "󰁹 "
-charging_symbol = "󰂄 "
-discharging_symbol = "󰂃 "
-unknown_symbol = "󰁽 "
-empty_symbol = "󰂎 "
-format = '[$symbol$percentage]($style) '
-
-[[battery.display]]
-threshold = 20
-style = "bold fg:#fb4934"
-
-[[battery.display]]
-threshold = 50
-style = "fg:#fabd2f"
-
-[[battery.display]]
-threshold = 100
-style = "fg:#b8bb26"
-
-[time]
-disabled = false
-time_format = "%H:%M"
-style = "fg:#928374"
-format = '[ $time]($style) '
+style = "fg:#a94a38"
+format = ' [$symbol$version]($style)'
 
 [character]
-success_symbol = '[❯](bold fg:#b8bb26)'
-error_symbol = '[❯](bold fg:#fb4934)'
+success_symbol = '[\$](bold fg:#332812)'
+error_symbol = '[\$](bold fg:#a94a38)'
