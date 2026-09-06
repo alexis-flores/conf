@@ -156,7 +156,7 @@
   	enable = true;
 	settings = {
 		default_session = {
-			command = "${pkgs.tuigreet}/bin/tuigreet --time --greeting '✵✧✧✧✧✧✧ nightingale ✧✧✧✧✧✧✵' --theme 'container=black;text=white;border=blue;title=blue;greet=yellow;prompt=red;input=white;action=cyan;button=yellow;time=white' --cmd ${pkgs.writeShellScript "hyprland-quiet" ''
+			command = "${pkgs.tuigreet}/bin/tuigreet --time --greeting '*·*·*·*·*·*·*·*·*·*·*·*·*·*·*· nightingale ·*·*·*·*·*·*·*·*·*·*·*·*·*·*·*' --theme 'container=black;text=white;border=blue;title=blue;greet=yellow;prompt=red;input=white;action=cyan;button=yellow;time=white' --cmd ${pkgs.writeShellScript "hyprland-quiet" ''
   exec uwsm start -e -D Hyprland hyprland.desktop >/dev/null 2>&1
 			''}";
 			user = "alex";
