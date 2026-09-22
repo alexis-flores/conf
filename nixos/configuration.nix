@@ -85,6 +85,8 @@
      playerctl
      ripgrep
      fzf
+     bat
+     glow
      fd
      btop
      zip
@@ -110,15 +112,27 @@
      papirus-icon-theme
      adwaita-icon-theme
      bibata-cursors
+     tor-browser
+     moonlight-qt
+     ares
+     dolphin-emu
+     pcsx2
+     ppsspp-sdl
+     melonds
+     mgba
   ];
   environment.variables.EDITOR = "nvim";
+  environment.variables.BAT_THEME = "ansi";
   environment.sessionVariables = {
   	LIBVA_DRIVER_NAME = "iHD";
   };
 
+  programs.nix-ld.enable = true;
+
   programs.bash.shellAliases = {
   	".." = "cd ..";
 	"..." = "cd ../..";
+	"cat" = "bat";
   };
   
   programs.bash.interactiveShellInit = ''
@@ -133,6 +147,11 @@
   programs.dms-shell.enable = true;
 
   programs.starship.enable = true;
+
+  programs.steam = {
+  	enable = true;
+	remotePlay.openFirewall = true;
+  };
 
   services.pipewire = {
   	enable = true;
@@ -240,6 +259,7 @@
   # };
 
   # List services that you want to enable:
+  services.flatpak.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

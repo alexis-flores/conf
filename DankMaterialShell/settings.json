@@ -10,6 +10,7 @@
   "controlCenterShowMicPercent": true,
   "showWorkspaceIndex": true,
   "appIdSubstitutions": [],
+  "networkPreference": "wifi",
   "iconThemeDark": "Papirus",
   "cursorSettings": {
     "hyprland": {

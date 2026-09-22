@@ -44,8 +44,8 @@ end)
 
 -- Static palette (paper / e-ink); require("dms.colors") at the bottom of
 -- this file instead if you want DMS/matugen to drive the border colors.
-local accent = "rgba(6e5834ff)"
-local tan    = "rgba(b0975fff)"
+local accent = "rgba(a94a38ff)" -- oxblood
+local brown  = "rgba(7a5230ff)" -- chestnut
 
 hl.config({
     general = {
@@ -56,7 +56,7 @@ hl.config({
 
         col = {
             active_border   = accent,
-            inactive_border = tan,
+            inactive_border = brown,
         },
 
         resize_on_border = true,
@@ -100,7 +100,7 @@ hl.config({
     group = {
         col = {
             border_active   = accent,
-            border_inactive = tan,
+            border_inactive = brown,
         },
 
         groupbar = {
@@ -117,7 +117,7 @@ hl.config({
 
             col = {
                 active   = accent,
-                inactive = tan,
+                inactive = brown,
             },
         },
     },
