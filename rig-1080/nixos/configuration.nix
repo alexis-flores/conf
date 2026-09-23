@@ -19,10 +19,23 @@
   # which may lag behind linuxPackages_latest.
   boot.kernelPackages = pkgs.linuxPackages;
 
-  networking.hostName = "rig-1080"; # Define your hostname.
+  networking.hostName = "auriel"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # Set up HDDs
+  fileSystems."/home/alex/storage" = {
+  	device = "/dev/disk/by-uuid/2f1971f9-fc4d-47c5-b8ff-691f13508151";
+	fsType = "ext4";
+	options = [ "nofail" ];
+  };
+
+  fileSystems."/home/alex/vault" = {
+  	device = "/dev/disk/by-uuid/82e7b69e-d4b4-4ad5-9cd3-9d1fa3fce49b";
+	fsType = "ext4";
+	options = [ "nofail" ];
+  };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -165,6 +178,13 @@
 	};
   };
   services.fwupd.enable = true;
+
+  services.sunshine = {
+  	enable = true;
+	openFirewall = true;
+	capSysAdmin = true;
+  };
+  services.tailscale.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = {

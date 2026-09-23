@@ -1,5 +1,5 @@
 {
-  description = "rig-1080";
+  description = "auriel";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
@@ -10,7 +10,7 @@
   };
 
   outputs = { self, nixpkgs, dms, ... }@inputs: {
-    nixosConfigurations.rig-1080 = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nightingale = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
