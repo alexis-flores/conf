@@ -23,6 +23,31 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  # Keep NM from re-enabling 802.11 power save on the flaky rtw89 dongle.
+  networking.networkmanager.wifi.powersave = false;
+  # wpa_supplicant is single-threaded: when an rtw89 scan never completes it
+  # blocks and starves its own D-Bus socket, so NetworkManager's calls time out
+  # and nmcli reports "NetworkManager is not running". iwd drives nl80211
+  # directly and keeps answering D-Bus through a stalled scan, so a driver hiccup
+  # degrades into a real error instead of wedging the whole stack.
+  # Setting this also flips networking.wireless.iwd.enable on and drops
+  # wpa_supplicant.
+  networking.networkmanager.wifi.backend = "iwd";
+
+  # SCU ECC remote lab: GPU-accelerated Windows over Omnissa Horizon (formerly
+  # VMware Horizon), reached through the campus VPN. Licensing lives on SCU's
+  # image, so this sidesteps SolidWorks' refusal to activate a standalone
+  # license inside a VM. The NM plugin puts the VPN in the normal network menu.
+  networking.networkmanager.plugins = with pkgs; [ networkmanager-openconnect ];
+
+  # NetworkManager ships with no ordering against its wifi backend: its After=
+  # is only systemd-journald.socket. iwd is Type=dbus, so NM can win the race,
+  # have Daemon.GetInfo() time out, and then never retry — it sees the device but
+  # never drives iwd, so scans come back empty forever.
+  systemd.services.NetworkManager = {
+  	after = [ "iwd.service" ];
+	wants = [ "iwd.service" ];
+  };
 
   # Set up HDDs
   fileSystems."/home/alex/storage" = {
@@ -65,7 +90,7 @@
   users.users."alex" = {
     isNormalUser = true;
     description = "alex";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [];
   };
 
@@ -94,11 +119,18 @@
      fzf
      bat
      glow
+     zathura
      fd
      btop
      zip
      unzip
      wget
+     usbutils
+     distrobox
+     omnissa-horizon-client
+     openconnect
+     networkmanagerapplet   # nm-connection-editor + the nm-applet secret agent that
+                            # runs openconnect's auth dialog (DMS cannot)
      man-pages
      claude-code
      gcc
@@ -119,7 +151,6 @@
      papirus-icon-theme
      adwaita-icon-theme
      bibata-cursors
-     zathura
      tor-browser
      moonlight-qt
      ares
@@ -129,8 +160,17 @@
      melonds
      mgba
   ];
+
   environment.variables.EDITOR = "nvim";
   environment.variables.BAT_THEME = "ansi";
+
+  # Nothing declared fonts before, so every family named in the dotfiles
+  # (ghostty, the Hyprland groupbar, the DMS bar) silently fell back to DejaVu.
+  fonts.packages = with pkgs; [
+     nerd-fonts.iosevka     # ghostty: "Iosevka Nerd Font"
+     nerd-fonts.im-writing  # hypr groupbar: "iMWritingQuat Nerd Font Propo"
+     adwaita-fonts          # DMS shell: "Adwaita Sans"
+  ];
 
   programs.nix-ld.enable = true;
 
@@ -163,17 +203,40 @@
 	pulse.enable = true;
   };
   services.upower.enable = true;
-  services.gvfs.enable = true;
-  # Nothing declared fonts before, so every family named in the dotfiles
-  # (ghostty, the Hyprland groupbar, the DMS bar) silently fell back to DejaVu.
-  fonts.packages = with pkgs; [
-     nerd-fonts.iosevka     # ghostty: "Iosevka Nerd Font"
-     nerd-fonts.im-writing  # hypr groupbar: "iMWritingQuat Nerd Font Propo"
-     adwaita-fonts          # DMS shell: "Adwaita Sans"
-  ];
 
+  # Never idle-suspend. This box holds long SolidWorks/VDI sessions over the SCU
+  # VPN and streams games to the t480, all of which look "idle" to logind because
+  # there is no local input. The default is already "ignore"; setting it
+  # explicitly means a future nixpkgs default can't silently reintroduce a
+  # timeout. Nothing else here blanks or locks: no hypridle/swayidle runs, and
+  # DMS has no lock timeout configured.
+  services.logind.settings.Login.IdleAction = "ignore";
+  services.gvfs.enable = true;
 
   hardware.bluetooth.enable = true;
+
+  # Rootless podman for distrobox: NixOS isn't FHS, so Windows-app installer
+  # scripts (and anything expecting apt or /usr/lib) need a conventional distro
+  # to run in. --nvidia injects the host's proprietary driver into the container.
+  virtualisation.podman.enable = true;
+
+  # Windows guest for SolidWorks: it only ships a .NET bootstrapper (SLDIM) that
+  # authenticates, pulls ~20GB, then installs — the one case Wine handles worst.
+  # Windows 11 demands TPM 2.0, hence swtpm. OVMF/UEFI firmware now ships with
+  # QEMU by default (the qemu.ovmf submodule was removed in 26.05), so selecting
+  # it is done per-VM in virt-manager rather than here.
+  virtualisation.libvirtd = {
+  	enable = true;
+	qemu.swtpm.enable = true;
+  };
+
+  programs.virt-manager.enable = true;
+
+  # TP-Link USB wifi dongle (Realtek): ships in "driver CD" mode, presenting as
+  # a mass-storage device (0bda:1a2b) instead of a NIC, so the kernel never
+  # binds rtw88/rtl8xxxu and no wlan interface appears. usb-modeswitch's udev
+  # rules eject it into its wifi personality on plug-in.
+  hardware.usb-modeswitch.enable = true;
 
   services.greetd = {
   	enable = true;
@@ -203,14 +266,6 @@
   };
 
   hardware.graphics.enable = true;
-
-  # Never idle-suspend. This box holds long SolidWorks/VDI sessions over the SCU
-  # VPN and streams games to the t480, all of which look "idle" to logind because
-  # there is no local input. The default is already "ignore"; setting it
-  # explicitly means a future nixpkgs default can't silently reintroduce a
-  # timeout. Nothing else here blanks or locks: no hypridle/swayidle runs, and
-  # DMS has no lock timeout configured.
-  services.logind.settings.Login.IdleAction = "ignore";
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = true;
 
@@ -230,6 +285,11 @@
 	extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
+  # RTL8852BU dongle: rtw89's low-power mode wedges the firmware mid-scan, so
+  # nl80211 scans never complete. wpa_supplicant is single-threaded and blocks
+  # on the pending scan, which starves its D-Bus socket — NetworkManager's calls
+  # then time out and nmcli reports "NetworkManager is not running".
+  boot.extraModprobeConfig = "options rtw89_core disable_ps_mode=Y";
   boot.blacklistedKernelModules = [
   	"sp5100_tco"
   ];
@@ -244,6 +304,7 @@
   	"rd.udev.log_level=3"
   	"systemd.show_status=auto"
   	"nmi_watchdog=0"
+  	"consoleblank=0"
 	"fbcon=nodefer"
 	"vt.global_cursor_default=0"
   ];
@@ -291,4 +352,3 @@
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }
-  	"consoleblank=0"
