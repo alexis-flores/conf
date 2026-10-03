@@ -119,6 +119,7 @@
      papirus-icon-theme
      adwaita-icon-theme
      bibata-cursors
+     zathura
      tor-browser
      moonlight-qt
      ares
@@ -163,6 +164,14 @@
   };
   services.upower.enable = true;
   services.gvfs.enable = true;
+  # Nothing declared fonts before, so every family named in the dotfiles
+  # (ghostty, the Hyprland groupbar, the DMS bar) silently fell back to DejaVu.
+  fonts.packages = with pkgs; [
+     nerd-fonts.iosevka     # ghostty: "Iosevka Nerd Font"
+     nerd-fonts.im-writing  # hypr groupbar: "iMWritingQuat Nerd Font Propo"
+     adwaita-fonts          # DMS shell: "Adwaita Sans"
+  ];
+
 
   hardware.bluetooth.enable = true;
 
