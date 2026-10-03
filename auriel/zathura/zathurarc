@@ -1,0 +1,10 @@
+set default-bg "#cdb27b"
+
+set recolor "true"
+set recolor-darkcolor "#2b2110"
+set recolor-lightcolor "#cdb27b"
+
+set statusbar-bg "#bda06a"
+set statusbar-fg "#332812"
+
+set window-title-basename true

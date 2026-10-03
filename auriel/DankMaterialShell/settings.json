@@ -1,0 +1,184 @@
+{
+  "currentThemeName": "custom",
+  "customThemeFile": "/home/alex/.config/DankMaterialShell/journal-theme.json",
+  "radiusStrength": 38,
+  "clockFormat": "24h",
+  "fontFamily": "Adwaita Sans",
+  "dockConfigs": [
+    {
+      "id": "dock",
+      "name": "Dock",
+      "enabled": true,
+      "screenPreferences": [
+        "all"
+      ],
+      "showOnLastDisplay": true,
+      "position": 1,
+      "mode": "compact",
+      "taskbarAlign": "center",
+      "widgetExpansion": "popout",
+      "iconSize": 40,
+      "spacing": 4,
+      "itemSpacing": 4,
+      "margin": 0,
+      "bottomGap": 0,
+      "transparency": 1,
+      "followInterfaceStyle": true,
+      "autoHide": true,
+      "smartAutoHide": false,
+      "useOverlayLayer": false,
+      "editOnRightClick": false,
+      "showOnFullscreen": false,
+      "openOnOverview": false,
+      "groupByApp": false,
+      "separatePinnedAndRunningApps": false,
+      "restoreSpecialWorkspaceOnClick": false,
+      "isolateDisplays": false,
+      "indicatorStyle": "circle",
+      "borderEnabled": true,
+      "borderColor": "primary",
+      "borderOpacity": 1,
+      "borderThickness": 1,
+      "launcherEnabled": true,
+      "launcherLogoMode": "os",
+      "launcherLogoCustomPath": "",
+      "launcherLogoColorOverride": "",
+      "launcherLogoSizeOffset": 0,
+      "launcherLogoBrightness": 0.5,
+      "launcherLogoContrast": 1,
+      "maxVisibleApps": 0,
+      "maxVisibleRunningApps": 0,
+      "showOverflowBadge": true,
+      "showTrash": false,
+      "trashFileManager": "default",
+      "trashCustomCommand": "",
+      "order": [],
+      "widgets": [
+        {
+          "id": "dock_launcher",
+          "widgetId": "dockLauncher",
+          "enabled": true
+        },
+        {
+          "id": "dock_apps",
+          "widgetId": "appsDock",
+          "enabled": true
+        },
+        {
+          "id": "dock_trash",
+          "widgetId": "dockTrash",
+          "enabled": true
+        }
+      ]
+    }
+  ],
+  "currentThemeCategory": "dynamic",
+  "widgetBackgroundColor": "sth",
+  "widgetColorMode": "colorful",
+  "barElevationEnabled": false,
+  "appIdSubstitutions": [],
+  "networkPreference": "wifi",
+  "iconThemeDark": "Papirus",
+  "cursorSettings": {
+    "hyprland": {
+      "inactiveTimeout": 0,
+      "hideOnKeyPress": false,
+      "hideOnTouch": false
+    },
+    "theme": "Bibata-Original-Amber",
+    "size": 24,
+    "niri": {
+      "hideAfterInactiveMs": 0,
+      "hideWhenTyping": false
+    },
+    "dwl": {
+      "cursorHideTimeout": 0
+    }
+  },
+  "matugenTemplateNeovim": true,
+  "osdPowerProfileEnabled": true,
+  "barConfigs": [
+    {
+      "shadowCustomColor": "#000000",
+      "clickThrough": false,
+      "fontScale": 1,
+      "screenPreferences": [
+        "all"
+      ],
+      "showOnLastDisplay": true,
+      "rightWidgets": [
+        "systemTray",
+        "clipboard",
+        "cpuUsage",
+        "memUsage",
+        "notificationButton",
+        {
+          "id": "controlCenterButton",
+          "enabled": true,
+          "showMicPercent": true
+        }
+      ],
+      "id": "default",
+      "borderThickness": 1,
+      "spacing": 4,
+      "position": 0,
+      "leftWidgets": [
+        "launcherButton",
+        {
+          "id": "workspaceSwitcher",
+          "enabled": true,
+          "showWorkspaceIndex": true
+        },
+        "focusedWindow"
+      ],
+      "bottomGap": 0,
+      "transparency": 1,
+      "name": "Main Bar",
+      "centerWidgets": [
+        "music",
+        "clock",
+        "weather"
+      ],
+      "noBackground": false,
+      "maximizeWidgetIcons": false,
+      "maximizeWidgetText": false,
+      "widgetPadding": 8,
+      "gothCornersEnabled": false,
+      "gothCornerRadiusOverride": false,
+      "gothCornerRadiusValue": 12,
+      "borderEnabled": true,
+      "borderColor": "primary",
+      "borderOpacity": 1,
+      "enabled": true,
+      "widgetOutlineEnabled": true,
+      "widgetOutlineColor": "secondary",
+      "innerPadding": 4,
+      "widgetOutlineOpacity": 0.72,
+      "widgetOutlineThickness": 1,
+      "iconScale": 1,
+      "autoHide": false,
+      "autoHideDelay": 250,
+      "showOnWindowsOpen": false,
+      "openOnOverview": false,
+      "visible": true,
+      "popupGapsAuto": true,
+      "popupGapsManual": 4,
+      "maximizeDetection": true,
+      "scrollEnabled": true,
+      "scrollXBehavior": "column",
+      "squareCorners": false,
+      "scrollYBehavior": "workspace",
+      "widgetTransparency": 1,
+      "shadowIntensity": 0,
+      "shadowOpacity": 60,
+      "shadowColorMode": "text",
+      "followInterfaceStyle": true
+    }
+  ],
+  "builtInPluginSettings": {
+    "dms_settings_search": {
+      "trigger": "?"
+    }
+  },
+  "configVersion": 29
+}

@@ -1,0 +1,68 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Traveler's journal prompt - the og [alex@nightingale:~]$ line in journal ink,
+# with quiet git/lang additions.
+
+add_newline = false
+
+format = """
+[✧ ](fg:#332812)\
+[\\[](fg:#332812)\
+$username\
+[@](fg:#332812)\
+$hostname\
+[:](fg:#332812)\
+$directory\
+[\\]](fg:#332812)\
+$git_branch\
+$git_status\
+$python\
+$rust\
+$character"""
+
+[username]
+show_always = true
+style_user = "fg:#332812"
+style_root = "bold fg:#a94a38"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false
+style = "fg:#332812"
+format = "[$hostname]($style)"
+
+[directory]
+style = "fg:#6e5834"
+format = "[$path]($style)"
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"documents" = "󰈙 "
+"downloads" = " "
+"music" = " "
+"pictures" = " "
+
+[git_branch]
+symbol = " "
+style = "fg:#66702f"
+format = ' [$symbol$branch]($style)'
+
+[git_status]
+style = "fg:#a94a38"
+format = '[($all_status$ahead_behind)]($style)'
+
+[python]
+symbol = " "
+style = "fg:#8a6a14"
+format = ' [$symbol$version]($style)'
+
+[rust]
+symbol = " "
+style = "fg:#a94a38"
+format = ' [$symbol$version]($style)'
+
+[character]
+success_symbol = '[\$](bold fg:#332812)'
+error_symbol = '[\$](bold fg:#a94a38)'
