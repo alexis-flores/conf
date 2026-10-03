@@ -2,3 +2,7 @@ nvim/lazy-lock.json
 **/cache/
 **/*.log
 yay/completion.cache
+
+# nix build symlinks
+result
+result-*
