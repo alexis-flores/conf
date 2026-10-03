@@ -1,0 +1,5 @@
+{
+  "label": "Journal",
+  "light": { "fg": "#332812", "bg": "#cdb27b", "link": "#7a5230" },
+  "dark":  { "fg": "#332812", "bg": "#cdb27b", "link": "#7a5230" }
+}

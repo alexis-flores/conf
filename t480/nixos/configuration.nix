@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./dms-package.nix
+      ./nomachine.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -27,6 +28,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = with pkgs; [ networkmanager-openconnect ];
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -113,6 +115,7 @@
      adwaita-icon-theme
      bibata-cursors
      tor-browser
+     obsidian
      moonlight-qt
      ares
      dolphin-emu
@@ -120,11 +123,18 @@
      ppsspp-sdl
      melonds
      mgba
+     openconnect
+     file
+     zathura
+     foliate
+     cozy
+     omnissa-horizon-client
   ];
   environment.variables.EDITOR = "nvim";
   environment.variables.BAT_THEME = "ansi";
   environment.sessionVariables = {
   	LIBVA_DRIVER_NAME = "iHD";
+	NIXOS_OZONE_WL = "1";
   };
 
   programs.nix-ld.enable = true;
@@ -151,6 +161,11 @@
   programs.steam = {
   	enable = true;
 	remotePlay.openFirewall = true;
+  };
+
+  programs.localsend = {
+  	enable = true;
+	openFirewall = true;
   };
 
   services.pipewire = {
