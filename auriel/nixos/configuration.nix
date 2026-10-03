@@ -203,6 +203,14 @@
   };
 
   hardware.graphics.enable = true;
+
+  # Never idle-suspend. This box holds long SolidWorks/VDI sessions over the SCU
+  # VPN and streams games to the t480, all of which look "idle" to logind because
+  # there is no local input. The default is already "ignore"; setting it
+  # explicitly means a future nixpkgs default can't silently reintroduce a
+  # timeout. Nothing else here blanks or locks: no hypridle/swayidle runs, and
+  # DMS has no lock timeout configured.
+  services.logind.settings.Login.IdleAction = "ignore";
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = true;
 
@@ -283,3 +291,4 @@
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }
+  	"consoleblank=0"
